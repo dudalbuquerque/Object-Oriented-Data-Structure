@@ -14,7 +14,6 @@ public:
         int size;
     };
 
-    // Função para criar um novo link
     Link* create_link(int it, Link* nextval) {
         Link* n = new Link;
         n->element = it;
@@ -28,7 +27,7 @@ public:
     return n;
     }
 
-    // Função para criar uma pilha vazia
+
     Stack* create_stack() {
         Stack* s = new Stack;
         s->top = nullptr;
@@ -36,13 +35,12 @@ public:
         return s;
     }
 
-    // Função para empilhar um elemento
     void push(Stack* s, int it) {
         s->top = create_link(it, s->top);
         s->size++;
     }
 
-    // Função para desempilhar um elemento
+    
     int pop(Stack* s) {
         if (s->top == nullptr) {
             cout << "Pilha vazia!" << endl;
@@ -51,12 +49,11 @@ public:
         int it = s->top->element;
         //Link* vpop = s->top;
         s->top = s->top->next;
-        //delete vpop;  // Libera o link removido
+        //delete vpop;  
         s->size--;
         return it;
     }
 
-    // Função para limpar a pilha
     void clear(Stack* s) {
         while (s->top != nullptr) {
             pop(s);
@@ -67,7 +64,7 @@ public:
 
 int main() {
     STACK stackManager;
-    STACK::Stack* mystack = stackManager.create_stack(); // Cria a pilha vazia
+    STACK::Stack* mystack = stackManager.create_stack(); 
 
     int qnt_elements;
     cout << "Digite a quantidade de elementos a serem empilhados: ";
@@ -80,13 +77,12 @@ int main() {
         stackManager.push(mystack, valor);
     }
 
-    cout << "Elementos desempilhados: ";
+    cout << "Desempilhados: ";
     while (mystack->size > 0) {
         cout << stackManager.pop(mystack) << " ";
     }
     cout << endl;
-    
-    
+
     if (mystack->size == 0) {
         cout << "Pilha vazia" << endl;
     }
