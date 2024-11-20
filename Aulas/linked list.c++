@@ -93,7 +93,7 @@ int main () {
     LinkedList::List* mylist = mylinked.create_list();
 
     int qnt_elemento;
-    cout << "Digite a quantidade de elementos da linkedlist: ";
+    cout << "Digite a quantidade de elementos terá sua lista: " ;
     cin >> qnt_elemento;
     
     int valor;
