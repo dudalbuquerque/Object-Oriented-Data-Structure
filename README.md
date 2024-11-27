@@ -1,5 +1,4 @@
-EDOO -> Estrutura de dados orientadas a objetos (CIN0135)
-Docente -> Pagosu
+Repositório reservado para a diciplina de Estrutura de dados orientada a objetos (EDOO)
 
 
 📫 Conecte-se comigo 
