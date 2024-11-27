@@ -1,5 +1,5 @@
-Repositório reservado para a diciplina de Estrutura de dados orientada a objetos (EDOO)
-
+Repositório reservado para a diciplina CIN0135-Estruturas de Dados Orientadas a Objeto (EDOO)
+Prof: Paulo Fonseca (paguso)
 
 📫 Conecte-se comigo 
 
