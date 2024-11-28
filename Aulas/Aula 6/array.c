@@ -14,7 +14,7 @@ main(){
     return 0;
 }
 
-void hckhfgkl(){
+void hckhfgk(){
     int *arr;
 
     int n;
