@@ -20,7 +20,7 @@
 
 
 
-#### Atividade: Calcular a média das notas dos alunos de uma turma
+#### Atividade: Calcular a média das notas dos alunos de uma turma 
 
 * O arquivo [`notas_alunos.txt`](./src/notas_alunos.txt) possui uma lista de registros, cada um contendo um nome, um número de matrícula e uma nota.
 * Definir uma struct Aluno para esse tipo de registro
