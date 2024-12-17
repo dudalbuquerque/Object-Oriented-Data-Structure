@@ -22,9 +22,9 @@ public:
     }
 
     Link* create_next_link(Link* nextval) {
-    Link* n = new Link;
-    n->next = nextval;
-    return n;
+        Link* n = new Link;
+        n->next = nextval;
+        return n;
     }
 
 
