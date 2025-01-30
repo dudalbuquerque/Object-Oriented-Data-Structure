@@ -1,64 +1,147 @@
-#include <bits/stdc++.h>
+#include <cassert>
 #include <iostream>
 
-class Node{
+using namespace std;
+
+
+class Node
+{
+	friend class LinkedList;
 public:
-    friend class LinkedList; //a mesma função da linha 7
-    Node (int element);
-    //Node *getnext(){return next;} //apenas para poder utilizar nas outras classes, poderia apenas colocar no public
+	Node()
+	{
+		val = -1;
+		next = nullptr;
+	}
+	Node(int v)
+	{
+		val = v;
+		next = nullptr;
+	}
+	~Node()
+	{
+		cout << "deleting " << val << endl;
+	}
 private:
-    int element;
-    Node *next;
+	int val;
+	Node *next;
 };
 
-Node::Node(int element){
-    element = element;
-    next = nullptr;
+
+class LinkedList
+{
+public:
+	LinkedList()
+	{
+		head = new Node();
+		sz = 0;
+	};
+	~LinkedList();
+	int size()
+	{
+		return sz;
+	}
+	int operator[](int pos);
+	void insert(int pos, int val);
+	void append(int val);
+	void prepend(int val);
+	int remove(int pos);
+private:
+	Node *locate(int pos);
+	Node *head;
+	int sz;
+};
+
+LinkedList::~LinkedList()
+{
+	Node *cur = head;
+	while (cur != nullptr) {
+		Node *next = cur->next;
+		delete cur;
+		cur = next;
+	}
 }
 
-class LinkedList{
-public:
-    LinkedList(){
-        head = new Node(-1);
-    };
 
-    void append(int element){
-        Node *cur = head;
-        while (cur -> next != nullptr){
-            cur = cur->next;
-        }
-        Node* tail = new Node(element);
-        cur->next = tail;
-        sz++;
-    }
-    
-    int operator()(){return sz;}
+Node *LinkedList::locate(int pos)
+{
+	Node *cur = head;
+	int i = 0;
+	while ( i < pos && cur->next != nullptr) {
+		cur = cur->next;
+		i++;
+	}
+	return cur;
+}
 
-    int operator[](int pos){
-        Node *cur = head;
-        size_t i = 0;
-        while (i < pos && cur->next != NULL){
-            cur = cur->next;
-            i++;
-        }
-        return cur->next->element;
-    }
+int LinkedList::operator[](int pos)
+{
+	assert(pos < sz);
+	return locate(pos)->next->val;
+}
 
-private:
-    Node *head;
-    int sz = 0;
-};
 
-int main(){
-    LinkedList list;
-    list.append(2);
-    list.append(5);
-    list.append(6);
-    list.append(7);
+void LinkedList::insert(int pos, int val)
+{
+	assert(pos <= sz);
+	Node *cur = locate(pos);
+	Node *new_node = new Node(val);
+	new_node->next = cur->next;
+	cur->next = new_node;
+	sz++;
+}
 
-    for (int i = 0; i < list(); i++){
-        cout <<  list[i];
-    }
+void LinkedList::append(int val)
+{
+	return insert(sz, val);
+}
 
-    return 0;
+void LinkedList::prepend(int val)
+{
+	return insert(0, val);
+}
+
+
+int LinkedList::remove(int pos)
+{
+	assert (pos < sz);
+	Node *cur = locate(pos);
+	Node *to_die = cur->next;
+	cur->next = to_die->next;
+	int ret = to_die->val;
+	delete to_die;
+	sz--;
+	return ret;
+}
+
+
+int main()
+{
+	LinkedList list;
+
+	size_t n = 1 << 4;
+	for (int i = 0; i < n; i++) {
+		list.append(2 * i);
+	}
+	for (int i = 0; i < list.size(); i++) {
+		cout << "list[" << i << "]= " << list[i] << endl;
+	}
+	cout << endl;
+	size_t half = n / 2;
+	for (int i = 0; i < half; i++) {
+		list.remove(i);
+	}
+	for (int i = 0; i < list.size(); i++) {
+		cout << "list[" << i << "]= " << list[i] << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < half; i++) {
+		list.insert(2 * i, 4 * i);
+	}
+	for (int i = 0; i < list.size(); i++) {
+		cout << "list[" << i << "]= " << list[i] << endl;
+	}
+	cout << endl;
+
+	cout << "size = " << list.size();
 }
